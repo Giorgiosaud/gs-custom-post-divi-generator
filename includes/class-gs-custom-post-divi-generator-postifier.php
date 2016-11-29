@@ -92,6 +92,13 @@ class Gs_Custom_Post_Divi_Generator_Postifier {
 				'show_admin_column' => true,
 				'query_var'         => true,
 				) );
+			register_taxonomy( $label.'_category', array( $label ), array(
+				'hierarchical'      => true,
+				'labels'            => $labels,
+				'show_ui'           => true,
+				'show_admin_column' => true,
+				'query_var'         => true,
+				) );
 			$this->load_divi_modules($label);
 			// add_action('gs_custom_post_activate_Divi_module',array($this,'load_divi_modules'),10,$label);
 		}
@@ -113,16 +120,13 @@ class Gs_Custom_Post_Divi_Generator_Postifier {
 		 }
 
 		}
-		public function LoadModules($moduleName){
-			// die(var_dump($moduleName));
+		public function LoadModules(){
 			if(class_exists("ET_Builder_Module")){
 				include(plugin_dir_path( __FILE__ ) . "custom-post-filter-module.php");
 				include(plugin_dir_path( __FILE__ ) . "custom-post-filter-functions.php");
 
 				foreach($this->posts as $post){
-					$label=sanitize_title_with_dashes($post["label"]);
-					var_dump($label);
-					
+					new ET_Builder_Module_Carousel($post["label"]);
 				}
 			}	
 		}

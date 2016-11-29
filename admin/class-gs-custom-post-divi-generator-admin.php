@@ -163,6 +163,7 @@ endif;
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/gs-custom-post-divi-generator-admin.css', array('materializr'), $this->version, 'all' );
 			wp_enqueue_style('materializr','//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css',array(),'v0.97.8','all');
 		}
+		return;
 
 	}
 

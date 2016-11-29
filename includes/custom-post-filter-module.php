@@ -14,6 +14,7 @@ class ET_Builder_Module_Carousel extends ET_Builder_Module
 
 	
 	function init() {
+		$this->global_settings_slug = 'et_pb_portfolio';
 		// need to use global settings from the slider module
 		$this->whitelisted_fields = array(
 			'title',

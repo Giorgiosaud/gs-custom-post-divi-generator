@@ -105,7 +105,7 @@ class Gs_Custom_Post_Divi_Generator_Admin {
 				'items_list'            => __( 'Items list', 'gs-custom-post-divi-generator' ),
 				'items_list_navigation' => __( 'Items list navigation', 'gs-custom-post-divi-generator' ),
 				'filter_items_list'     => __( 'Filter items list', 'gs-custom-post-divi-generator' ),
-			),
+				),
 			'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'trackbacks', 'custom-fields', 'page-attributes', ),
 			'taxonomies'            => array( 'post_tag' ),
 			'hierarchical'          => false,
@@ -120,7 +120,7 @@ class Gs_Custom_Post_Divi_Generator_Admin {
 			'exclude_from_search'   => false,
 			'publicly_queryable'    => true,
 			'capability_type'       => 'page',
-		);
+			);
 		$json=json_encode($optional_fields);
 		global $wpdb;
 
@@ -133,8 +133,8 @@ class Gs_Custom_Post_Divi_Generator_Admin {
 				'singular' => $singular, 
 				'description' => $description, 
 				'optional_fields' => $json, 
-			)); 
-endif;
+				)); 
+		endif;
 	}
 
 	public function list_posts_page(){
@@ -175,10 +175,12 @@ endif;
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		if(strpos($hook,'divi-custom-post')!== false){
 
-		wp_enqueue_script('materializr',"//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js",array('jquery'),'v0.97.8',false);
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/gs-custom-post-divi-generator-admin.js', array( 'jquery','materializr' ), $this->version, false );
-
+			wp_enqueue_script('materializr',"//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js",array('jquery'),'v0.97.8',false);
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/gs-custom-post-divi-generator-admin.js', array( 'jquery','materializr' ), $this->version, false );
+		}
+		return;
 
 	}
 

@@ -113,7 +113,8 @@ class Gs_Custom_Post_Divi_Generator_Postifier {
 		 }
 
 		}
-		public function LoadModules(){
+		public function LoadModules($moduleName){
+			die(var_dump($moduleName));
 			if(class_exists("ET_Builder_Module")){
 				include(plugin_dir_path( __FILE__ ) . "custom-post-filter-module.php");
 				include(plugin_dir_path( __FILE__ ) . "custom-post-filter-functions.php");

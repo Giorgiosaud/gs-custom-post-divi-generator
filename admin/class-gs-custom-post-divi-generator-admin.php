@@ -147,7 +147,7 @@ endif;
 	 */
 	public function enqueue_styles($hook) {
 		//die($hook);
-		die(var_dump(strpos($hook,'toplevel_page_et_divi_optionsw')));
+		die(var_dump(strpos($hook,'toplevel_page_et_divi_optionsw')!==false));
 
 		if(strpos($hook,'divi-custom-post')!== false){
 			/**

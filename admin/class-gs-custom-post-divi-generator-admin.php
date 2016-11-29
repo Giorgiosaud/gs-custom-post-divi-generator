@@ -146,7 +146,8 @@ endif;
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles($hook) {
-		die($hook);
+		die(strpos($hook,'divi-custom-post'));
+
 		if(strpos($hook,'divi-custom-post')!== false){
 			/**
 			 * This function is provided for demonstration purposes only.

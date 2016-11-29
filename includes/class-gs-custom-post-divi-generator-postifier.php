@@ -96,6 +96,8 @@ class Gs_Custom_Post_Divi_Generator_Postifier {
 	}
 	public function load_divi_modules($moduleName){
 		
+ 		include(plugin_dir_path( __FILE__ ) . "includes/custom-post-filter-module.php");
+
 		die(var_dump($moduleName));
 
 	}

@@ -1,5 +1,5 @@
 <?php
-class ET_Builder_Module_Carousel extends ET_Builder_Module 
+class ET_Builder_Module_Carousel extends ET_Builder_Element 
 {
 	public $label;
 	public $sanitizedLabel;

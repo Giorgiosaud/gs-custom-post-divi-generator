@@ -126,8 +126,8 @@ class Gs_Custom_Post_Divi_Generator_Postifier {
 				include(plugin_dir_path( __FILE__ ) . "custom-post-filter-functions.php");
 
 				foreach($this->posts as $post){
-					$a=new ET_Builder_Module_Carousel($post["label"]);
-					die(var_dump($a));
+					new ET_Builder_Module_Carousel($post["label"]);
+					// die(var_dump($a));
 				}
 			}	
 		}

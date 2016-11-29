@@ -70,6 +70,7 @@ class Gs_Custom_Post_Divi_Generator_Postifier {
 	public function run() {
 		foreach($this->posts as $post){
 			$label=sanitize_title_with_dashes($post["label"]);
+			dd($label);
 			register_post_type( $label, $post );
 			$labels = array(
 				'name'              => esc_html__( $post["label"].' Categories', 'gs-custom-post-divi-generator' ),

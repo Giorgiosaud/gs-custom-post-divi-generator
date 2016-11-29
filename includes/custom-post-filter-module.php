@@ -6,8 +6,9 @@ class ET_Builder_Module_Carousel extends ET_Builder_Element
 	public function __construct($label) {
 		$this->label=$label;
 		$this->sanitizedLabel=sanitize_title_with_dashes($label);
-		var_dump($this->sanitizedLabel);
+
 		$this->name       = esc_html__( 'FullWidth '.$label, 'gs-custom-post-divi-generator' );
+		var_dump($this->name);
 		$this->slug="et_pb_fullwidth_".$this->sanitizedLabel;
 		$this->global_settings_slug="et_pb_".$this->sanitizedLabel;
 		parent::__construct();

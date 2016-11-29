@@ -127,7 +127,6 @@ class Gs_Custom_Post_Divi_Generator_Postifier {
 
 				foreach($this->posts as $post){
 					$a=new ET_Builder_Module_Carousel($post["label"]);
-					var_dump($a);
 				}
 			}	
 		}

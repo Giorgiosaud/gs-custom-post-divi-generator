@@ -150,18 +150,6 @@ endif;
 		die(var_dump(strpos($hook,'divi-custom-post')!==false));
 
 		if(strpos($hook,'divi-custom-post')!== false){
-			/**
-			 * This function is provided for demonstration purposes only.
-			 *
-			 * An instance of this class should be passed to the run() function
-			 * defined in Gs_Custom_Post_Divi_Generator_Loader as all of the hooks are defined
-			 * in that particular class.
-			 *
-			 * The Gs_Custom_Post_Divi_Generator_Loader will then create the relationship
-			 * between the defined hooks and the functions defined in this
-			 * class.
-			 */
-
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/gs-custom-post-divi-generator-admin.css', array('materializr'), $this->version, 'all' );
 			wp_enqueue_style('materializr','//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css',array(),'v0.97.8','all');
 		}

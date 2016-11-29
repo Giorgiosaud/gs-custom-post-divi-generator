@@ -127,8 +127,10 @@ class Gs_Custom_Post_Divi_Generator_Postifier {
 
 				foreach($this->posts as $post){
 					new ET_Builder_Module_Carousel($post["label"]);
+					et_update_option( 'et_pb_clear_templates_cache', 'on' );
 					// die(var_dump($a));
 				}
+
 			}	
 		}
 

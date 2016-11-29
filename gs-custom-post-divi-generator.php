@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-
+dd('test');
 function Prep_DS_Custom_Modules2(){
  global $pagenow;
 

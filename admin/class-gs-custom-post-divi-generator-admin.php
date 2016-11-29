@@ -147,7 +147,7 @@ endif;
 	 */
 	public function enqueue_styles($hook) {
 		//die($hook);
-		die(var_dump(strpos($hook,'divi-custom-post')!==false));
+		//die(var_dump(strpos($hook,'divi-custom-post')!==false));
 
 		if(strpos($hook,'divi-custom-post')!== false){
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/gs-custom-post-divi-generator-admin.css', array('materializr'), $this->version, 'all' );

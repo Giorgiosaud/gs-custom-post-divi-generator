@@ -91,7 +91,7 @@ class Gs_Custom_Post_Divi_Generator_Postifier {
 				'show_admin_column' => true,
 				'query_var'         => true,
 			) );
-			add_action('gs_custom_post_activate_Divi_module',array($this,'load_divi_modules',strtolower($post["label"])));
+			// add_action('gs_custom_post_activate_Divi_module',array($this,'load_divi_modules',strtolower($post["label"])));
 		}
 	}
 	public function load_divi_modules($moduleName){

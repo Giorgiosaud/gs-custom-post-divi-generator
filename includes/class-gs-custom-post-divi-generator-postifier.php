@@ -55,7 +55,7 @@ class Gs_Custom_Post_Divi_Generator_Postifier {
 			SELECT * 
 			FROM  $table_name
 			"
-		);
+			);
 		$posts=array();
 		foreach($results as $result){
 			$posts[]=json_decode($result->optional_fields,true);
@@ -70,7 +70,7 @@ class Gs_Custom_Post_Divi_Generator_Postifier {
 	public function run() {
 		foreach($this->posts as $post){
 			$label=sanitize_title_with_dashes($post["label"]);
-			dd($label);
+			// dd($label);
 			register_post_type( $label, $post );
 			$labels = array(
 				'name'              => esc_html__( $post["label"].' Categories', 'gs-custom-post-divi-generator' ),
@@ -84,25 +84,41 @@ class Gs_Custom_Post_Divi_Generator_Postifier {
 				'add_new_item'      => esc_html__( 'Add New Category', 'gs-custom-post-divi-generator' ),
 				'new_item_name'     => esc_html__( 'New Category Name', 'gs-custom-post-divi-generator' ),
 				'menu_name'         => esc_html__( 'Categories', 'gs-custom-post-divi-generator' ),
-			);
+				);
 			register_taxonomy( $label.'_tag', array( $label ), array(
 				'hierarchical'      => false,
 				'labels'            => $labels,
 				'show_ui'           => true,
 				'show_admin_column' => true,
 				'query_var'         => true,
-			) );
-			add_action('gs_custom_post_activate_Divi_module',array($this,'load_divi_modules'),10,$label);
+				) );
+			$this->load_divi_modules($label);
+			// add_action('gs_custom_post_activate_Divi_module',array($this,'load_divi_modules'),10,$label);
 		}
 	}
 	public function load_divi_modules($moduleName){
-		
- 		include(plugin_dir_path( __FILE__ ) . "includes/custom-post-filter-module.php");
- 		include(plugin_dir_path( __FILE__ ) . "includes/custom-post-filter-functions.php");
+		global $pagenow;
 
-		die(var_dump($moduleName));
+		$is_admin = is_admin();
+		$action_hook = $is_admin ? 'wp_loaded' : 'wp';
+		 $required_admin_pages = array( 'edit.php', 'post.php', 'post-new.php', 'admin.php', 'customize.php', 'edit-tags.php', 'admin-ajax.php', 'export.php' ); // list of admin pages where we need to load builder files
+		 $specific_filter_pages = array( 'edit.php', 'admin.php', 'edit-tags.php' );
+		 $is_edit_library_page = 'edit.php' === $pagenow && isset( $_GET['post_type'] ) && 'et_pb_layout' === $_GET['post_type'];
+		 $is_role_editor_page = 'admin.php' === $pagenow && isset( $_GET['page'] ) && 'et_divi_role_editor' === $_GET['page'];
+		 $is_import_page = 'admin.php' === $pagenow && isset( $_GET['import'] ) && 'wordpress' === $_GET['import']; 
+		 $is_edit_layout_category_page = 'edit-tags.php' === $pagenow && isset( $_GET['taxonomy'] ) && 'layout_category' === $_GET['taxonomy'];
+
+		 if ( ! $is_admin || ( $is_admin && in_array( $pagenow, $required_admin_pages ) && ( ! in_array( $pagenow, $specific_filter_pages ) || $is_edit_library_page || $is_role_editor_page || $is_edit_layout_category_page || $is_import_page ) ) ) {
+		 	add_action($action_hook, array($this,'LoadModules'), 9789);
+		 }
+
+		}
+		public function LoadModules(){
+			if(class_exists("ET_Builder_Module")){
+				include(plugin_dir_path( __FILE__ ) . "includes/custom-post-filter-module.php");
+				include(plugin_dir_path( __FILE__ ) . "includes/custom-post-filter-functions.php");
+			}	
+		}
 
 	}
-
-}
 

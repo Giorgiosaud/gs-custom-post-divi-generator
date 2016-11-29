@@ -109,14 +109,14 @@ class Gs_Custom_Post_Divi_Generator_Postifier {
 		 $is_edit_layout_category_page = 'edit-tags.php' === $pagenow && isset( $_GET['taxonomy'] ) && 'layout_category' === $_GET['taxonomy'];
 
 		 if ( ! $is_admin || ( $is_admin && in_array( $pagenow, $required_admin_pages ) && ( ! in_array( $pagenow, $specific_filter_pages ) || $is_edit_library_page || $is_role_editor_page || $is_edit_layout_category_page || $is_import_page ) ) ) {
-		 	add_action($action_hook, array($this,'LoadModules'), 9789);
+		 	add_action($action_hook, array($this,'LoadModules'), 9789,$moduleName);
 		 }
 
 		}
 		public function LoadModules(){
 			if(class_exists("ET_Builder_Module")){
-				include(plugin_dir_path( __FILE__ ) . "includes/custom-post-filter-module.php");
-				include(plugin_dir_path( __FILE__ ) . "includes/custom-post-filter-functions.php");
+				include(plugin_dir_path( __FILE__ ) . "custom-post-filter-module.php");
+				include(plugin_dir_path( __FILE__ ) . "custom-post-filter-functions.php");
 			}	
 		}
 
